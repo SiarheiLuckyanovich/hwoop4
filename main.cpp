@@ -249,18 +249,30 @@ vector <Card*>  m_Cards;
     {
         m_Cards.clear();
     }
-
+//============================================================================================================
     int GetValue ()
     {
         int vsum=0;
         for (size_t i=0; i<m_Cards.size(); i++)
         {
-            vsum += (static_cast <int> (m_Cards[i] -> c_value));
+            if (vsum < 21)
+            {
+                if ((static_cast <int> (m_Cards[i] -> c_value)) != 1)
+                {
+                    vsum += (static_cast <int> (m_Cards[i] -> c_value));
+                }
+                else if ((vsum + 10)>21)
+                    {
+                        vsum += (static_cast <int> (m_Cards[i] -> c_value));
+                    }
+                    else vsum += 10;
+            } else vsum += (static_cast <int> (m_Cards[i] -> c_value));
         }
         cout <<  vsum << " - sum " << endl;
+
         return  vsum;
     }
-
+//============================================================================================================
     void printHand()
     {
         for (size_t i=0; i<m_Cards.size(); i++)
@@ -269,10 +281,9 @@ vector <Card*>  m_Cards;
             cout << static_cast <int> (m_Cards[i] ->c_value) << " ' ";
             cout <<  m_Cards[i] ->c_upPosition << " ' " << endl;
         }
-        }
-
+    }
 };
-
+//============================================================================================================
 
 
 
@@ -334,14 +345,20 @@ cout << checkVectorArrayInt(myVector) << endl;
     Card king (Card::e_suit::Diamonds,Card::e_value::King,0);
     Card six (Card::e_suit::Diamonds,Card::e_value::six,0);
     Hand h;
-    h.Add(&ace);
-    h.GetValue();
+
     h.Add(&king);
     h.GetValue();
     h.Add(&six);
     h.GetValue();
+    h.Add(&ace);
+    h.GetValue();
     cout << "Hand value sum = " << h.GetValue() << endl;
     h.printHand();
+    h.Clear();
+    h.Add(&king);
+    h.GetValue();
+    h.printHand();
+
 
   return 0;
 }
