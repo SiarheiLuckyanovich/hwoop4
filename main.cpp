@@ -192,32 +192,40 @@ void printArrayInt()
 Постараться использовать максимально быстрый алгоритм.*/
 //============================================================================================================
 
-
+void printVector(vector<int> &a)
+{
+    vector<int>::iterator it;       // объявляем итератор
+    it = a.begin();          // присваиваем ему начало вектора
+    while (it != a.end())    // пока итератор не достигнет конца
+    {
+        cout << *it << " ";         // выводим значение элемента, на который указывает итератор
+        ++it;                       // и переходим к следующему элементу
+    }
+}
 int checkVectorArrayInt(vector<int> &a)
 {
-    bool check = true;                                          // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
-    int different = 0;
+    //bool check = true;                                          // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
+    //int different = 0;
+    vector<int>::iterator it;
+    it = a.begin();
     if (a.size()>0)
+
     {
-        //different ++;                                           // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
         for (size_t i = 0U; i < a.size(); i++)
         {
             for (size_t j = i+1; j < a.size(); j++)
             {
                 if (a[i] == a[j])
                 {
-                    check = false;
+                    a.erase(it +j);
+                    j--;
                 }
 
-                else check = true;
-                {
-                    different += check;
-                }
-            }break;
+            }
         }
     }
 
-    return different;
+    return a.size();//different;
 }
 
 //============================================================================================================
@@ -229,7 +237,7 @@ int checkVectorArrayInt(vector<int> &a)
 соответственно он принимает в качестве параметра указатель на новую карту
 • метод Clear, который очищает руку от карт
 • метод GetValue, который возвращает сумму очков карт руки
-(здесь предусмотреть возможность того, что туз может быть равен 11).*/
+(здесь предусмотреть возможность того, что туз может быть равен 11). V*/
 //============================================================================================================
 
 class Hand
@@ -319,7 +327,7 @@ int main(int argc, char* argv[])
     cout << endl;
 
 //============================================================================================================
-  /*  cout << "2st task: " << endl;
+    cout << "2st task: vector check" << endl;
     cout << endl;
 
 vector<int> myVector;
@@ -327,16 +335,16 @@ vector<int> myVector;
     myVector.push_back(count);
     myVector[3] =9;
     myVector[5] =1;
-    vector<int>::iterator it; // объявляем итератор
-    it = myVector.begin(); // присваиваем ему начало вектора
-    while (it != myVector.end()) // пока итератор не достигнет конца
-    {
-        cout << *it << " "; // выводим значение элемента, на который указывает итератор
-        ++it; // и переходим к следующему элементу
-    }
-cout << '\n';
-cout << checkVectorArrayInt(myVector) << endl;
-*/
+    myVector[4] =9;
+    myVector[6] =1;
+    printVector(myVector);
+cout << endl;
+cout << "different elements = " << checkVectorArrayInt(myVector) << endl;
+printVector(myVector);
+cout << endl;
+myVector.pop_back();
+printVector(myVector);
+cout << endl;
 //============================================================================================================
     cout << "3st task: Hand " << endl;
     cout << endl;
