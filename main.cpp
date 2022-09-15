@@ -1,3 +1,5 @@
+#include "Card.h"
+#include <vector>
 #include <iostream>
 #include <cassert> // для assert()
 using namespace std;
@@ -6,7 +8,7 @@ using namespace std;
 • для удаления последнего элемента массива (аналог функции pop_back() в векторах) V
 • для удаления первого элемента массива (аналог pop_front() в векторах) V
 • для сортировки массива V
-• для вывода на экран элементов.*/
+• для вывода на экран элементов V.*/
 //============================================================================================================
 
 class ArrayInt
@@ -141,7 +143,7 @@ void deleteFirst () //метод для удаления для удаления
 
     // Копируем все элементы от 1го(0+1) до m_length
     for (int before=1; before < m_length; ++before) {
-      data[before] = m_data[before];
+      data[before-1] = m_data[before];
     }
     // Удаляем старый массив и используем вместо него новый
     delete[] m_data;
@@ -178,21 +180,138 @@ void printArrayInt()
 {
     for (int i = 0U; i < m_length; i++)
     {
-        cout << " " << m_data[i] << " " << endl;
+        cout << " " << m_data[i] << " " ;
     }
+    cout << endl;
+}
+
+  void push_back(int value) { insertBefore(value, m_length); }
+};
+//============================================================================================================
+/* 2. Дан вектор чисел, требуется выяснить, сколько среди них различных.
+Постараться использовать максимально быстрый алгоритм.*/
+//============================================================================================================
+
+
+int checkVectorArrayInt(vector<int> &a)
+{
+    bool check = true;                                          // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
+    int different = 0;
+    if (a.size()>0)
+    {
+        //different ++;                                           // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
+        for (size_t i = 0U; i < a.size(); i++)
+        {
+            for (size_t j = i+1; j < a.size(); j++)
+            {
+                if (a[i] == a[j])
+                {
+                    check = false;
+                }
+
+                else check = true;
+                {
+                    different += check;
+                }
+            }break;
+        }
+    }
+
+    return different;
 }
 
 //============================================================================================================
-  void push_back(int value) { insertBefore(value, m_length); }
+/* 3. Реализовать класс Hand, который представляет собой коллекцию карт.
+В классе будет одно поле: вектор указателей карт (удобно использовать вектор,
+т.к. это по сути динамический массив, а тип его элементов должен быть - указатель на объекты класса Card).
+Также в классе Hand должно быть 3 метода:
+• метод Add, который добавляет в коллекцию карт новую карту,
+соответственно он принимает в качестве параметра указатель на новую карту
+• метод Clear, который очищает руку от карт
+• метод GetValue, который возвращает сумму очков карт руки
+(здесь предусмотреть возможность того, что туз может быть равен 11).*/
+//============================================================================================================
+
+class Hand
+{
+public:
+vector <Card*>  m_Cards;
+
+    Hand (){}
+    Hand (vector <Card*>  m_Cards) {}
+
+    void Add (Card* pCard)
+    {
+        m_Cards.push_back(pCard);
+    }
+
+    void Clear ()
+    {
+        m_Cards.clear();
+    }
+
+    int GetValue ()
+    {
+        int sum;
+        for (size_t i=0; i<m_Cards.size(); i++)
+        {
+            sum+= static_cast <int> (m_Cards[i] -> GetValue());
+        }
+        return  sum;
+    }
 };
+
+
+
+
+
 
 int main(int argc, char* argv[])
 {
-  ArrayInt arrayInt;
-  arrayInt.push_back(100);
-  arrayInt.push_back(0);
-  arrayInt.push_back(1);
-  arrayInt.push_back(10);
+//============================================================================================================
+    cout << "1st task: " << endl;
 
+    ArrayInt arrayInt;
+    arrayInt.push_back(100);
+    arrayInt.push_back(0);
+    arrayInt.push_back(1);
+    arrayInt.push_back(11);
+    arrayInt.push_back(10);
+    arrayInt.insertBefore(10, 3);
+    arrayInt.push_back(15);
+    arrayInt.push_back(10);
+    arrayInt.push_back(11);
+    arrayInt.push_back(10);
+    arrayInt.printArrayInt();
+    cout << arrayInt.getLength() << "is Length" << endl;
+    arrayInt.SwapArrayInt();
+    arrayInt.printArrayInt();
+    arrayInt.deleteFirst();
+    arrayInt.printArrayInt();
+    arrayInt.deleteLast();
+    arrayInt.printArrayInt();
+    arrayInt.push_back(11);
+    arrayInt.printArrayInt();
+
+    cout << endl;
+
+//============================================================================================================
+    cout << "2st task: " << endl;
+    cout << endl;
+
+vector<int> myVector;
+    for (int count=0; count < 10; ++count)
+    myVector.push_back(count);
+    myVector[3] =9;
+    myVector[5] =1;
+    vector<int>::iterator it; // объявляем итератор
+    it = myVector.begin(); // присваиваем ему начало вектора
+    while (it != myVector.end()) // пока итератор не достигнет конца
+    {
+        cout << *it << " "; // выводим значение элемента, на который указывает итератор
+        ++it; // и переходим к следующему элементу
+    }
+cout << '\n';
+cout << checkVectorArrayInt(myVector) << endl;
   return 0;
 }

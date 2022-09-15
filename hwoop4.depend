@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1663172703 source:d:\rab\study\c\hwoop4\main.cpp
+1663190077 source:d:\rab\study\c\hwoop4\main.cpp
+	<vector>
 	<iostream>
 	<cassert>
 
