@@ -252,13 +252,25 @@ vector <Card*>  m_Cards;
 
     int GetValue ()
     {
-        int sum;
+        int vsum=0;
         for (size_t i=0; i<m_Cards.size(); i++)
         {
-            sum+= static_cast <int> (m_Cards[i] -> GetValue());
+            vsum += (static_cast <int> (m_Cards[i] -> c_value));
         }
-        return  sum;
+        cout <<  vsum << " - sum " << endl;
+        return  vsum;
     }
+
+    void printHand()
+    {
+        for (size_t i=0; i<m_Cards.size(); i++)
+        {
+            cout << " ' "<< static_cast <char> (m_Cards[i] ->c_suit) << " ' ";
+            cout << static_cast <int> (m_Cards[i] ->c_value) << " ' ";
+            cout <<  m_Cards[i] ->c_upPosition << " ' " << endl;
+        }
+        }
+
 };
 
 
@@ -269,7 +281,7 @@ vector <Card*>  m_Cards;
 int main(int argc, char* argv[])
 {
 //============================================================================================================
-    cout << "1st task: " << endl;
+    cout << "1st task: Conteiner" << endl;
 
     ArrayInt arrayInt;
     arrayInt.push_back(100);
@@ -296,7 +308,7 @@ int main(int argc, char* argv[])
     cout << endl;
 
 //============================================================================================================
-    cout << "2st task: " << endl;
+  /*  cout << "2st task: " << endl;
     cout << endl;
 
 vector<int> myVector;
@@ -313,5 +325,23 @@ vector<int> myVector;
     }
 cout << '\n';
 cout << checkVectorArrayInt(myVector) << endl;
+*/
+//============================================================================================================
+    cout << "3st task: Hand " << endl;
+    cout << endl;
+
+    Card ace (Card::e_suit::Diamonds,Card::e_value::Ace,0);
+    Card king (Card::e_suit::Diamonds,Card::e_value::King,0);
+    Card six (Card::e_suit::Diamonds,Card::e_value::six,0);
+    Hand h;
+    h.Add(&ace);
+    h.GetValue();
+    h.Add(&king);
+    h.GetValue();
+    h.Add(&six);
+    h.GetValue();
+    cout << "Hand value sum = " << h.GetValue() << endl;
+    h.printHand();
+
   return 0;
 }
