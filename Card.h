@@ -30,3 +30,56 @@ bool c_upPosition = 0;
     };
 
 };
+/*int checkVectorArrayInt(vector<int> &a)
+{
+    size_t n = 0;
+    vector<int>::iterator it;
+    it = a.begin();
+    if (a.size()>0)
+
+
+    {
+        for (size_t i = 0U; i < a.size(); ++i)
+        {
+            for (size_t j = i+1; j < a.size(); ++j)
+            {
+                if (a[i] == a[j])
+                {
+                    a.erase(it +j);
+                    j--;
+                }
+
+            }
+        } n = a.size();
+    }a.clear();
+
+    return n;
+
+}*/
+/*int checkVectorArrayInt(vector<int> &a)
+{
+    vector<int>b;
+    size_t n = 0;
+    vector<int>::iterator it;
+    it = b.begin();
+    b.assign( a.begin(), a.end());
+
+    if (b.size()>0)
+    {
+        for (size_t i = 0U; i < b.size(); ++i)
+        {
+            for (size_t j = i+1; j < b.size(); ++j)
+            {
+                if (b[i] == b[j])
+                {
+                    b.erase(it +j);
+                    j--;
+                }
+
+            }
+        } n = b.size();
+    }b.clear();
+
+    return n;
+
+}*/

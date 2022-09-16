@@ -204,28 +204,27 @@ void printVector(vector<int> &a)
 }
 int checkVectorArrayInt(vector<int> &a)
 {
-    //bool check = true;                                          // { 10, 8, 6, 4, 2, 1, 1, 8, 10 };
-    //int different = 0;
+    vector<int>b;
+    size_t n = 0;
     vector<int>::iterator it;
     it = a.begin();
-    if (a.size()>0)
+    b.assign( a.begin(), a.end());
 
+    if (a.size()>0)
     {
-        for (size_t i = 0U; i < a.size(); i++)
+        for (size_t i = 0U; i < a.size(); ++i)
         {
-            for (size_t j = i+1; j < a.size(); j++)
+            for (size_t j = i+1; j < a.size(); ++j)
             {
                 if (a[i] == a[j])
                 {
                     a.erase(it +j);
                     j--;
                 }
-
             }
-        }
-    }
-
-    return a.size();//different;
+        } n = a.size();
+    }a.assign( b.begin(), b.end());;
+    return n;
 }
 
 //============================================================================================================
@@ -342,8 +341,6 @@ cout << endl;
 cout << "different elements = " << checkVectorArrayInt(myVector) << endl;
 printVector(myVector);
 cout << endl;
-myVector.pop_back();
-printVector(myVector);
 cout << endl;
 //============================================================================================================
     cout << "3st task: Hand " << endl;

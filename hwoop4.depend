@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1663259282 source:d:\rab\study\c\hwoop4\main.cpp
+1663314639 source:d:\rab\study\c\hwoop4\main.cpp
 	"Card.h"
 	<vector>
 	<iostream>
 	<cassert>
 
-1663192841 d:\rab\study\c\hwoop4\card.h
+1663314107 d:\rab\study\c\hwoop4\card.h
 
