@@ -202,15 +202,14 @@ void printVector(vector<int> &a)
         ++it;                       // и переходим к следующему элементу
     }
 }
-int checkVectorArrayInt(vector<int> &a)
+int checkVectorArrayInt(vector<int> a)
 {
-    vector<int>b;
     size_t n = 0;
     vector<int>::iterator it;
     it = a.begin();
-    b.assign( a.begin(), a.end());
-
     if (a.size()>0)
+
+
     {
         for (size_t i = 0U; i < a.size(); ++i)
         {
@@ -221,10 +220,13 @@ int checkVectorArrayInt(vector<int> &a)
                     a.erase(it +j);
                     j--;
                 }
+
             }
         } n = a.size();
-    }a.assign( b.begin(), b.end());;
+    }a.clear();
+
     return n;
+
 }
 
 //============================================================================================================
